@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+if [[ $# -ne 2 ]]
+  then
+    echo "Two arguments required, i.e."
+    echo "                             $ build PROJECT CASE"
+    exit 1
+fi
+
+PROJECT=$1
+CASE=$2
+
+cp TEMPLATE-TRACMASS.def $PROJECT-$CASE.def
+sed -i "s/\${PROJECT}/${PROJECT}/g" $PROJECT-$CASE.def
+sed -i "s/\${CASE}/${CASE}/g" $PROJECT-$CASE.def
+
+sudo singularity build $PROJECT-$CASE.sif $PROJECT-$CASE.def
