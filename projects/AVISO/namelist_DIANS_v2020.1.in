@@ -1,0 +1,167 @@
+&INIT_GRID_DESCRIPTION
+    ! Does the netcdf data start with a zero index?
+    zeroindx = .TRUE.,
+    ! Describe filenames
+    ! directory of physical data (u,v,T,S,MLD,etc)
+    physDataDir = '',
+    physPrefixForm = 'dt_global_allsat_phy_l4',
+    dateFormat = '_YYYYMMDD',
+    ! suffix of files, e.g. ".nc"
+    fileSuffix = '.nc',
+    ! Describe variable names
+    ! name of resolved zonal velocity
+    ueul_name = 'ugos',
+    ! ---- " -------   meridional
+    veul_name = 'vgos',
+/
+&INIT_GRID_SIZE
+    ! Size of global grid
+    ! number of global i points
+    imt = 1440,
+    ! number of global j points
+    jmt = 720,
+    ! number of global k points
+    km = 1,
+    ! number of time levels to use (should be = 2)
+    nst = 2,
+    ! zonal periodic
+    iperio = 1,
+    ! meridional boundary conditions
+    jperio = 1,
+/
+&INIT_GRID_SUBDOMAIN
+/
+&INIT_GRID_TIME
+    ! time between two time levels
+    ! if ncgcm_unit = 5, then ngcm_step = 3 means 3 months
+    ngcm_step = 1
+    ! units of ngcm
+    ngcm_unit = 4
+    ! number of subcycles between time levels
+    ! stopped
+    iter = 4
+/
+&INIT_START_DATE
+    ! start time
+    startsec = 0,
+    startmin = 0,
+    starthour = 0,
+    ! start date
+    startday = 31,
+    startmon = 12,
+    startyear = 2019,
+    ! dont use leap years?
+    noleap = .FALSE.,
+/
+&INIT_RUN_TIME
+    ! Loop run
+    ! make a time loop to run
+    ! e.g. 1000 years using only 100 years of data
+    loopYears = .FALSE.,
+    ! year to start loop from
+    loopStartYear = 2019,
+    ! last year of loop
+    loopEndYear = 2019,
+    ! Verbose
+    log_level = 5,
+    ! Information of run time
+    ! number of time steps for run
+    intrun = 9861,
+/
+&INIT_WRITE_TRAJ
+    ! 1 = write at time intervals of gcm datasets (each ints)
+    ! 2 = write at each time iteration
+    ! 3 = write each spatial grid-crossing
+    ! 4 = write all the time steps
+    ! 5 = write only start and end positions
+    write_frec = 3,
+    outDataDir = '',
+    outDataFile = 'DIANS_v2020.1',
+    ! Format of the time array
+    ! 0 - tt / 1 - ts / 2 - YYYY, MM, DD, HH
+    timeformat = 0,
+/
+&INIT_SEEDING
+    ! nff =  1 run forward trajectories
+    ! nff = -1 run backwards
+    nff = -1,
+    ! isec = 1 start on zonal cell wall
+    ! isec = 2 start on meridional cell wall
+    ! isec = 3 start on vertical wall
+    isec = 2,
+    ! idir =  1 start only when flux > 0
+    ! idir = -1       only when flux < 0
+    idir = 0,
+    ! number of trajectories can be set by
+    ! nqua = 1 constant number of particles in all seeding cells
+    !          set by partQuant (particles / gridcell)
+    ! nqua = 2 Each particle reflects mass transport at seeding.
+    !          set by partQuant (m3/s or kg/s per particle)
+    ! nqua = 3 Each particle reflects air/water mass/volume at seeding.
+    !          set by partQuant in m3 or kg per particle
+    nqua = 1,
+    ! particles/gridcell or m3s-1/particle or m3/particle
+    partquant = 3,
+    ! start only one trajectory for debugging
+    loneparticle = 0,
+    ! seedtype = 1 seed using ist,jst,kst (below)
+    ! seedtype = 2 seed using file with start positions
+    seedtype = 2,
+    ! when seedtype = 1
+    ! seed in box in range i = [ist1,ist2]
+    !                      j = [jst1,jst2]
+    !                      k = [kst1,kst2]
+    ist1 = 682,
+    ist2 = 683,
+    jst1 = 583,
+    jst2 = 583,
+    kst1 = 1,
+    kst2 = 1,
+    ! when seedtype = 2
+    ! directory for seed files
+    seeddir = '',
+    ! name of seed file
+    seedfile = 'seedfile.txt',
+    ! = 1 seed only for specific times
+    ! = 2 seed using file with start positions
+    seedtime = 1,
+    ! when seedtime = 1
+    ! seed only between tst1 and tst2
+    tst1 = 1,
+    tst2 = 9681,
+    ! when seedtime = 2
+    ! name of seed file
+    timefile = '',
+/
+&INIT_TRACERS
+    l_tracers = .FALSE.,
+/
+&INIT_TRACERS_SEEDING
+/
+&INIT_KILLZONES
+    ! time limit for traj [days]
+    timax = 365,
+    exitType = 1,
+    ! If exitType = 1: killing zone defined by a box
+    ! IMPORTANT -> The maximum number of boxes than can be defined are 10
+    ! ienw,iene are western and eastern i indices of killzone
+    ! jens,jenn are southern and northern j indices of killzone
+    ! sets up two killzones, the first i = [0,100],    j = [200,300]
+    ! the other                        i = [500,1000], j = [450,470]
+    ienw = 650, 800, 650, 650,
+    iene = 650, 800, 800, 800,
+    jens = 530, 530, 620, 530,
+    jenn = 620, 620, 620, 530,
+    ! If exitType = 2: killing zone defined by tracer value
+    ! Tracerchoice defines which tracer is used for the killing zone
+    ! it could be different
+    ! tracerchoice = 1,2
+    ! tracere      = 25,35
+    ! This set up defines a killing zone by the 25C isotherm and the 35psu isohaline
+/
+&INIT_POSTPROCESS
+    l_psi = .FALSE.
+    dirpsi = 1,1,1,1
+/
+&INIT_ACTIVE
+/
