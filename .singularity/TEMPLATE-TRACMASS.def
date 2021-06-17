@@ -25,11 +25,11 @@ From: ubuntu:20.04
         make \
         libnetcdf-dev \
         libnetcdff-dev
-    sed -i "s/^\s*PROJECT\s*=.*/PROJECT=${PROJECT}/g" /opt/Tracmass/Makefile && \
-    sed -i "s/^\s*CASE\s*=.*/CASE=${CASE}/g" /opt/Tracmass/Makefile
+    sed -i "s/^\s*PROJECT\s*=.*/PROJECT="${PROJECT}"/g" /opt/Tracmass/Makefile && \
+    sed -i "s/^\s*CASE\s*=.*/CASE="${CASE}"/g" /opt/Tracmass/Makefile
     cd /opt/Tracmass && make --file=Makefile
-    cp /opt/Tracmass/project/${PROJECT}/seedfile_${CASE}.txt /opt/Tracmass/seedfile.txt 2>/dev/null || :
-    sed -i "s!^\s*seedfile\s*=.*!seedfile='seedfile.txt',!g" /opt/Tracmass/namelist.in
+    cp /opt/Tracmass/projects/${PROJECT}/seedfile_${CASE}.txt /opt/Tracmass/seedfile.txt 2>/dev/null || :
+    sed -i "s!^\s*seedfile\s*=.*!seedfile='"seedfile.txt"',!g" /opt/Tracmass/namelist.in
     sed -i "s!^\s*physDataDir\s*=.*!physDataDir='/mnt/input/',!g" /opt/Tracmass/namelist.in
     sed -i "s!^\s*outDataDir\s*=.*!outDataDir='/mnt/output/',!g" /opt/Tracmass/namelist.in
 
