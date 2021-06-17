@@ -11,7 +11,7 @@ PROJECT=$1
 CASE=$2
 
 cp TEMPLATE-TRACMASS.def $PROJECT-$CASE.def
-sed -i "s/\${PROJECT}/${PROJECT}/g" $PROJECT-$CASE.def
-sed -i "s/\${CASE}/${CASE}/g" $PROJECT-$CASE.def
+sed -i "s/\${PROJECT}/"${PROJECT}"/g" $PROJECT-$CASE.def
+sed -i "s/\${CASE}/"${CASE}"/g" $PROJECT-$CASE.def
 
 sudo singularity build $PROJECT-$CASE.sif $PROJECT-$CASE.def
