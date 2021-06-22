@@ -7,7 +7,7 @@ PROJECT	          = Theoretical
 CASE              = Theoretical
 RUNFILE 	        = runtracmass
 ARCH              =
-NETCDFLIBS        = none
+NETCDFLIBS        = automatic-44
 #================================================================
 
 # Possible architectures:
