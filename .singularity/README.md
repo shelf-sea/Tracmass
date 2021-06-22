@@ -19,7 +19,7 @@ returns `Theoretical-Theoretical.sif`.
 
 ```bash
 # e.g.
-$ rsync Theoretical-Theoretical.sif user@tetralith.nsc.liu.se:/.../experiment/.
+$ rsync -auzP Theoretical-Theoretical.sif user@tetralith.nsc.liu.se:/.../experiment/.
 ```
 
 ## Run
